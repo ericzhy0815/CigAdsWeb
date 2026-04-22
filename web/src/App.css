@@ -1,0 +1,272 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.brand-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-link:hover {
+  color: var(--accent);
+}
+
+.brand p {
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+}
+
+.main-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  border-color: var(--accent);
+}
+
+.nav-link--active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.page-content {
+  padding: 1.5rem;
+}
+
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.page-heading h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.page-heading p {
+  margin: 0.4rem 0 0;
+  color: var(--text-muted);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.placeholder-card {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.placeholder-card .label {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.placeholder-card .value {
+  margin: 0.4rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.placeholder-table {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-head {
+  font-weight: 700;
+  background: var(--surface);
+}
+
+.inline-link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.labeling-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 1rem;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.panel h3 {
+  margin: 0;
+}
+
+.panel > p {
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+}
+
+.option-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.option-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.image-placeholder {
+  margin-top: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.5rem;
+  min-height: 230px;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+}
+
+.meta-placeholder {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+}
+
+.back-link {
+  margin: 0;
+}
+
+.info-actions {
+  margin-top: 0.5rem;
+}
+
+.research-overview {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.research-overview h3 {
+  margin: 0;
+}
+
+.research-overview p {
+  margin-top: 0.75rem;
+  color: var(--text);
+}
+
+.example-ad-figure {
+  margin: 1rem 0 0;
+}
+
+.example-ad-image {
+  width: 100%;
+  max-width: 760px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.example-ad-figure figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.result-figure {
+  margin: 1rem 0 0;
+}
+
+.result-image {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.result-figure figcaption {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border-radius: 0.55rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+}
+
+.primary-button:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 900px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .table-row {
+    grid-template-columns: 1fr;
+  }
+
+  .labeling-layout {
+    grid-template-columns: 1fr;
+  }
+}
