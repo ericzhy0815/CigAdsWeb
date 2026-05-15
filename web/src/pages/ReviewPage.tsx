@@ -4,6 +4,9 @@ import type { DatasetInfo } from "./DatasetListPage";
 import w1ClipPredictions from "../assets/predictions/w1/clip.json";
 import w1GeminiPredictions from "../assets/predictions/w1/gemini.json";
 import w1ResnetPredictions from "../assets/predictions/w1/resnet.json";
+import originalClipPredictions from "../assets/predictions/original/clip.json";
+import originalGeminiPredictions from "../assets/predictions/original/gemini.json";
+import originalResnetPredictions from "../assets/predictions/original/resnet.json";
 import w2ClipPredictions from "../assets/predictions/w2/clip.json";
 import w2GeminiPredictions from "../assets/predictions/w2/gemini.json";
 import w2ResnetPredictions from "../assets/predictions/w2/resnet.json";
@@ -76,6 +79,11 @@ const PREDICTION_FILES: Record<string, Record<string, ModelRecord>> = {
     resnet: w2ResnetPredictions as ModelRecord,
     gemini: w2GeminiPredictions as ModelRecord,
   },
+  original: {
+    clip: originalClipPredictions as ModelRecord,
+    resnet: originalResnetPredictions as ModelRecord,
+    gemini: originalGeminiPredictions as ModelRecord,
+  },
 };
 
 const MODEL_DISPLAY: Record<string, string> = {
@@ -113,6 +121,13 @@ const DATASET_IMAGE_MODULES: Record<DatasetId, Record<string, string>> = {
   ) as Record<string, string>,
   w2: import.meta.glob(
     "../assets/images/w2/*.{png,jpg,jpeg,gif,webp,PNG,JPG,JPEG,GIF,WEBP}",
+    {
+      eager: true,
+      import: "default",
+    },
+  ) as Record<string, string>,
+  original: import.meta.glob(
+    "../assets/images/original/*.{png,jpg,jpeg,gif,webp,PNG,JPG,JPEG,GIF,WEBP}",
     {
       eager: true,
       import: "default",
@@ -414,8 +429,8 @@ export function ReviewPage() {
       </article>
 
       <p className="back-link">
-        <Link to="/datasets" className="inline-link">
-          Back to dataset list
+        <Link to={`/datasets/${datasetId}`} className="inline-link" state={location.state}>
+          Back to dataset info
         </Link>
       </p>
     </section>

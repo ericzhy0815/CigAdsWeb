@@ -17,6 +17,9 @@ import {
 import w1ClipPredictions from "../assets/predictions/w1/clip.json";
 import w1GeminiPredictions from "../assets/predictions/w1/gemini.json";
 import w1ResnetPredictions from "../assets/predictions/w1/resnet.json";
+import originalClipPredictions from "../assets/predictions/original/clip.json";
+import originalGeminiPredictions from "../assets/predictions/original/gemini.json";
+import originalResnetPredictions from "../assets/predictions/original/resnet.json";
 import w2ClipPredictions from "../assets/predictions/w2/clip.json";
 import w2GeminiPredictions from "../assets/predictions/w2/gemini.json";
 import w2ResnetPredictions from "../assets/predictions/w2/resnet.json";
@@ -50,6 +53,12 @@ const datasetImageModules: Record<
       import: "default",
     },
   ) as Record<string, () => Promise<string>>,
+  original: import.meta.glob(
+    "../assets/images/original/*.{png,jpg,jpeg,gif,webp,PNG,JPG,JPEG,GIF,WEBP}",
+    {
+      import: "default",
+    },
+  ) as Record<string, () => Promise<string>>,
 };
 
 type SampleLabels = {
@@ -76,6 +85,11 @@ const MODEL_PREDICTIONS: Record<DatasetId, Record<string, ModelRecord>> = {
     clip: w2ClipPredictions as ModelRecord,
     resnet: w2ResnetPredictions as ModelRecord,
     gemini: w2GeminiPredictions as ModelRecord,
+  },
+  original: {
+    clip: originalClipPredictions as ModelRecord,
+    resnet: originalResnetPredictions as ModelRecord,
+    gemini: originalGeminiPredictions as ModelRecord,
   },
 };
 
@@ -535,8 +549,8 @@ export function DatasetLabelingPage() {
       </div>
 
       <p className="back-link">
-        <Link to="/datasets" className="inline-link">
-          Back to dataset list
+        <Link to={`/datasets/${datasetId}`} className="inline-link" state={location.state}>
+          Back to dataset info
         </Link>
       </p>
     </section>

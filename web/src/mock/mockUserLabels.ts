@@ -20,7 +20,7 @@ export const ELEMENT_OPTIONS = [
   "Restrictions",
 ] as const;
 
-export type DatasetId = "w1" | "w2";
+export type DatasetId = "w1" | "w2" | "original";
 
 export type MockSampleLabels = {
   theme: string[];
@@ -30,11 +30,13 @@ export type MockSampleLabels = {
 const MOCK_LABELED_COUNTS: Record<DatasetId, number> = {
   w1: 179,
   w2: 104,
+  original: 342,
 };
 
 const DATASET_NAMES: Record<DatasetId, string> = {
   w1: "BWF Wave 1",
   w2: "BWF Wave 2",
+  original: "Original",
 };
 
 function pickTheme(index: number): string[] {

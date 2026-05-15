@@ -24,6 +24,11 @@ const datasetImageCount = {
       "../assets/images/w2/*.{png,jpg,jpeg,gif,webp,PNG,JPG,JPEG,GIF,WEBP}",
     ),
   ).length,
+  original: Object.keys(
+    import.meta.glob(
+      "../assets/images/original/*.{png,jpg,jpeg,gif,webp,PNG,JPG,JPEG,GIF,WEBP}",
+    ),
+  ).length,
 };
 
 const datasetBase: Omit<DatasetInfo, "nextUnlabeledIndex">[] = [
@@ -39,9 +44,19 @@ const datasetBase: Omit<DatasetInfo, "nextUnlabeledIndex">[] = [
     totalSamples: datasetImageCount.w2,
     labeledCount: getMockLabeledCount("w2"),
   },
+  {
+    id: "original",
+    name: getDatasetName("original"),
+    totalSamples: datasetImageCount.original,
+    labeledCount: getMockLabeledCount("original"),
+  },
 ];
 
 export function DatasetListPage() {
+  const onAddDatasetClick = () => {
+    window.alert("Add dataset action coming soon.");
+  };
+
   const datasets: DatasetInfo[] = datasetBase.map((dataset) => ({
     ...dataset,
     nextUnlabeledIndex:
@@ -57,28 +72,34 @@ export function DatasetListPage() {
         <p>Browse datasets and monitor progress before assigning labels.</p>
       </div>
 
+      <div className="info-actions dataset-action-row">
+        <button
+          type="button"
+          className="dataset-action-button"
+          onClick={onAddDatasetClick}
+        >
+          Add Dataset
+        </button>
+      </div>
+
       <div className="placeholder-table" role="table" aria-label="Dataset list">
         <div className="table-row table-head" role="row">
           <span role="columnheader">Dataset Name</span>
           <span role="columnheader">Progress</span>
-          <span role="columnheader">Action</span>
         </div>
         {datasets.map((dataset) => (
-          <div className="table-row" role="row" key={dataset.id}>
+          <Link
+            to={`/datasets/${dataset.id}`}
+            className="table-row table-row-link"
+            role="row"
+            key={dataset.id}
+            state={{ datasetInfo: dataset }}
+          >
             <span role="cell">{dataset.name}</span>
             <span role="cell">
               {Math.round((dataset.labeledCount / dataset.totalSamples) * 100)}%
             </span>
-            <span role="cell">
-              <Link
-                to={`/datasets/${dataset.id}`}
-                className="inline-link"
-                state={{ datasetInfo: dataset }}
-              >
-                Open labeling view
-              </Link>
-            </span>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
